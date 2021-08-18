@@ -1,6 +1,19 @@
-\documentclass[12pt, letterpaper]{article}
+% Template Διπλωματικών Εργασιών Πανεπιστημίου Δυτικής Μακεδονίας, Τμήμα Ηλεκτρολόγων Μηχανικών και Μηχανικών Υπολογιστών
+%
+% Αναπτύχθηκε από την Αναστασία Τερζή και το Μηνά Δασυγένη το 2021 για τη διευκόλυνση των φοιτητών που θέλουν να γράψουν τις διπλωματικές τους εργασίες στο LaTex
+%
+% https://github.com/mdasyg/tempate_diploma_UOWM_ECE.git
+%
+% Διορθώσεις/Βελτιώσεις στο template να τις στείλετε στο mdasyg@ieee.org ή να τις κάνετε push στο github.
+%
+% Άδεια: Αναφορά Δημιουργού - Μη Εμπορική Χρήση - Παρόμοια Διανομή CC BY-NC-SA
+% 
+% Δοκιμάστηκε με το xelatex 2020/2021
+% Έκδοση: 2021/08
+
+\documentclass[12pt, letterpaper]{book}
 \usepackage[greek,english]{babel}
-\usepackage[utf8]{inputenc}
+% \usepackage[utf8]{inputenc}
 \usepackage[a4paper,width=150mm,top=25mm,bottom=25mm]{geometry}
 \usepackage{blindtext}
 \usepackage[acronym]{glossaries}
@@ -18,6 +31,13 @@
 %for the line under section name
 \usepackage{tocloft}
 \renewcommand\cftaftertoctitle{\par\noindent\hrulefill\par\vskip 1.3em}
+
+\usepackage[toc,page]{appendix}
+\renewcommand\appendixtocname{Παραρτήματα}
+
+
+
+
 
 \usepackage{parskip}
 \usepackage{titlesec}
@@ -40,6 +60,12 @@
 \DeclareFloatingEnvironment{illustration}
 \renewcommand\listillustrationname{ \LARGE Κατάλογος Εικόνων}
       
+
+\makeatletter
+\renewcommand{\@chapapp}{Κεφάλαιο}
+\makeatother
+      
+
 
 \begin{document}
 %for the empty pages after title page
@@ -102,24 +128,29 @@
 	\subfile{abstract_acknowledgement_preface/preface}
 	
 % Εισαγωγή
-	\subfile{maintext/intro}
+	\subfile{maintext/chap1}
 
 % Μέρη/Κεφάλαια
 	
-	\subfile{maintext/chap2}
-	\subfile{maintext/chap3}
+	\include{maintext/chap2}
+	\include{maintext/chap3}
     
-	\subfile{maintext/chap4}
-	\subfile{maintext/chap5}
-	\subfile{maintext/chap6}
-	\subfile{maintext/chap7}
+	\include{maintext/chap4}
+	\include{maintext/chap5}
+	\include{maintext/chap6}
+	\include{maintext/chap7}
 
 % Παραρτήματα
-	\appendix
+	%\appendix
+    \renewcommand\appendixpagename{Παράρτημα}
+    \renewcommand\appendixname{Παράρτημα}
+    \begin{appendices}
     
-	\subfile{appendix/app}
+    
+	\include{appendix/app}
 	
 % Βιβλιογραφία - Αναφορές
+    \renewcommand\bibname{Βιβλιογραφία}
     \bibliographystyle{ieeetr}
 	\bibliography{references}
 	
@@ -132,5 +163,6 @@
 	\addcontentsline{toc}{section}{Συντομογραφίες - Αρκτικόλεξα  - Ακρωνύμια}
 	\addcontentsline{toc}{section}{Απόδοση Ξενόγλωσσων Όρων}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{appendices}
 
 \end{document}
